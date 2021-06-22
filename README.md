@@ -171,6 +171,8 @@
     - WillOnce：表示执行一次方法时，将执行其参数action的方法。一般我们使用Return方法，用于指定一次调用的输出。
     - WillRepeatedly：表示一直调用一个方法时，将执行其参数action的方法。需要注意下它和WillOnce的区别，WillOnce是一次，WillRepeatedly是一直。
     - RetiresOnSaturation：用于保证期待调用不会被相同的函数的期待所覆盖。
+    - DoAll：每次发动时执行a1到an的所有动作。
+    - SetArgPointee：设置参数。
 
 ## GoogleTest使用
 下载相关源码，只要编译gtest-all.cc，gmock-all.cc即可。`E.g. third_party/googletest`

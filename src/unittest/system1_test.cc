@@ -72,3 +72,19 @@ TEST_F(SystemTest, case3) {
   ret = system_.Pay("user1", "123", 10);
   EXPECT_STREQ(ret.c_str(), "pay error");
 }
+
+TEST_F(SystemTest, case4) {
+  unittest::MockUser user;
+  EXPECT_CALL(user, Online()).WillRepeatedly(testing::Return(false));
+  EXPECT_CALL(user, Login(testing::_, testing::_)).WillOnce(
+    testing::DoAll(
+      testing::Return(true)
+    )
+  );
+  EXPECT_CALL(user, Pay(testing::_)).WillRepeatedly(testing::Return(true));
+
+  system_.set_user(&user);
+
+  std::string ret = system_.Pay("jack", "123", 100);
+  EXPECT_STREQ(ret.c_str(), "pay success");
+}
