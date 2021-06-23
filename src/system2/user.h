@@ -12,6 +12,8 @@ public:
   bool Pay(int money);
 
   bool Online() const;
+
+  int GetStatus(std::string* error_msg) const;
 };
 
 }  // namespace system2

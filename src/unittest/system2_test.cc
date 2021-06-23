@@ -67,3 +67,22 @@ TEST_F(System2Test, case3) {
   ret = system_.Pay("user1", "123", 10);
   EXPECT_STREQ(ret.c_str(), "pay error");
 }
+
+TEST_F(System2Test, case4) {
+  // 非admin用户只能支付两次，后面支付均失败
+  MockUser2& user = system_.user_;
+  EXPECT_CALL(user, GetStatus(testing::_)).WillOnce(
+    testing::DoAll(
+      testing::SetArgPointee<0>("good"),
+      testing::Return(0)
+    )
+  ).WillOnce(
+    testing::DoAll(
+      testing::SetArgPointee<0>("Offline"),
+      testing::Return(-1)
+    )
+  );
+
+  EXPECT_EQ(system_.GetUserStatus(), "normal");
+  EXPECT_EQ(system_.GetUserStatus(), "Offline");
+}

@@ -14,4 +14,8 @@ bool User::Online() const {
   return true;
 }
 
+int User::GetStatus(std::string* error_msg) const {
+  return 0;
+}
+
 }  // namespace system2

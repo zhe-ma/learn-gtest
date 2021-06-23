@@ -17,6 +17,8 @@ public:
 
   std::string Pay(const std::string& username, const std::string& password, int money);
 
+  std::string GetUserStatus() const;
+
 private:
   User user_;
 };

@@ -10,6 +10,8 @@ public:
   MOCK_METHOD(bool, Pay, (int money), ());
 
   MOCK_METHOD(bool, Online, (), (const));
+
+  MOCK_METHOD(bool, GetStatus, (std::string* error_msg), (const));
 };
 
 #endif  // UNITTEST_MOCK_USER2_H_

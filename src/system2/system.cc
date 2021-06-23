@@ -20,4 +20,14 @@ std::string System::Pay(const std::string& username, const std::string& password
   return "pay success";
 }
 
+std::string System::GetUserStatus() const {
+  std::string msg;
+  int status = user_.GetStatus(&msg);
+  if (status == 0) {
+    return "normal";
+  }
+
+  return msg;
+}
+
 }  // namespace system2
